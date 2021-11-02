@@ -4,7 +4,6 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="jdk" jdkName="Python 3.8 (Mapping)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="hilbert_curve" />
     <orderEntry type="module" module-name="darwinc" />
   </component>
   <component name="PyDocumentationSettings">

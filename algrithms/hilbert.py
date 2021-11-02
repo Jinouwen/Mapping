@@ -2,6 +2,7 @@ import networkx as nx
 import numpy as np
 from sir.machine import Machine
 from sir.placement import Placement
+from utils.evaluator import Evaluator
 
 
 def pre_direction(now_d):
@@ -46,3 +47,23 @@ class Hilbert(object):
     def do_mapping(net: nx.DiGraph, machine: Machine):
         placement = Placement(net, machine)
         node_list = list(nx.topological_sort(net))
+        curve = np.array(make_curve(0, 0, machine.size_x, machine.size_y, 0, 0), dtype=int)
+        for i, pos in enumerate(curve):
+            index = node_list[i]
+
+            placement.mapping[index][0], placement.mapping[index][1] = pos
+            placement.index[tuple(pos)] = index
+        return placement
+
+
+def main():
+    from utils.random_net_maker import Net_maker
+    net = Net_maker.full_connect(8, 8)
+    machine = Machine(8)
+    placement = Hilbert.do_mapping(net, machine)
+    print(Evaluator.evaluate(placement))
+    print(Evaluator.evaluate(placement, 'normal'))
+
+
+if __name__ == '__main__':
+    main()

@@ -5,6 +5,7 @@ class Machine(object):
     def __init__(self, size_x, size_y=-1):
         if size_y == -1:
             size_y = size_x
+        self.size = (size_x, size_y)
         self.size_x, self.size_y = size_x, size_y
         #self.map = np.full((size_x, size_y), -1, dtype=np.int32)
         self.core_num = size_x * size_y
